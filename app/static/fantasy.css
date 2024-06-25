@@ -6,20 +6,34 @@
 }
 
 #navigation {
-    background-color: rgb(233, 162, 223);
     font-family: Arial, Helvetica, sans-serif;
-    
+    text-align: center;
+    background: #000;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+}
+
+nav a{
+    text-decoration: none;
+    color: #ffff;
+    font-size: 14px;
+    line-height: 33px;
+    height: 36px;
+    transition: .5s;
+}
+nav a:hover{
+    background: #59036a;
 }
 
 #container {
-    width: 400px;
-    margin: 0 auto;
+    width: 450px;
+    margin: auto;
     margin-top: 10%;
 }
 
 form {
-    width: 100%;
-    padding: 30px;
+    width: 90%;
+    padding: 5%;
     border: 1px solid #f1F1f1;
     background: #fff;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -44,28 +58,30 @@ input [type=password] {
         border-box;
 }
 
-input [type=submit] {
+input[type=submit] {
 
-    background-color: red;
+    text-align: center;
+    background-color: black;
     color:
-        white;
+        rgb(247, 246, 246);
     padding: 14px 20px;
     margin:
         8px 0;
     border: none;
     cursor: pointer;
     width:
-        100%;
+        20%;
 }
 
-input [type=submit]:hover {
-    background-color: blue;
-    color: #53af57;
-    border: 1px solid #53af57;
+input[type=submit]:hover {
+    background-color: rgb(186,151,183);
+    color: #060606;
+    border: 1px solid #060606;
 }
 
 #add_exercice {
-    margin-top: 10%;
+    margin-top: 5%;
+    
 }
 
 #tempo {
