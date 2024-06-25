@@ -2,7 +2,7 @@ import os
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 
 load_dotenv()
@@ -13,11 +13,32 @@ print(API_URL)
 app = Flask(__name__)
 CORS(app)
     
-# @app.route("/") 
-# def connection() :
+@app.route('/users', methods=['GET'])
+def get_users():
+    try:
+        response = requests.get(API_URL + "user")
+        response.raise_for_status()
+        users = response.json()
+        return jsonify(users)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
     
-
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+@app.route('/users/<user_id>', methods=['GET'])
+def get_user(user_id):
+    try:
+        response = requests.get(API_URL + "user/" + user_id)
+        response.raise_for_status()
+        users = response.json()
+        return jsonify(users)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('users/update/<user_id>', methods=['PUT'])
+def update_user(user_id) :
+    try:
+        response = requests.get(API_URL + "user/" + user_id)
+        response.raise_for_status()
+        users = response.json()
+        return jsonify(users)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
