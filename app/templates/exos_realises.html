@@ -1,60 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <link href="fantasy.css" rel="stylesheet" />
-</head>
+    <link href="../static/fantasy.css" rel="stylesheet" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav id="navigation">
-            <a href="exos_realises.html">Exercices Réalisés</a>
-            <a href="banque_exos.html">Banque d'Exercices</a>
-            <a href="accueil.html">Mon Profil</a>
-            <a href="connexion.html">Se connecter</a>
-        </nav>
-        <h1 id="titre"> SiDoRé </h1>
+      <nav id="navigation">
+        <a href="/my_exercises">Exercices Réalisés</a>
+        <a href="/exercises_bank">Banque d'Exercices</a>
+        <a href="/profil">Mon Profil</a>
+        <a href="/connection">Se connecter</a>
+      </nav>
+      <h1 id="titre">SiDoRé</h1>
     </header>
     <fieldset id="add_exercice">
-        <legend>Ajouter un nouvel exercice</legend>
-        <br>
-        <label for="title-select">Titre : </label>
+      <legend>Ajouter un nouvel exercice</legend>
+      <br />
+      <label for="title-select">Titre : </label>
 
-        <select name="titre" id="titre-select">
-            <option value="">--Veuillez choisir votre exercice--</option>
-            <option value="name_exercice1">batterie1</option>
-            <option value="name_exercice2">batterie2</option>
-        </select>
-        <br><br>
+      <select name="titre" id="titre-select">
+        <option value="">--Veuillez choisir votre exercice--</option>
+        <option value="name_exercice1">batterie1</option>
+        <option value="name_exercice2">batterie2</option>
+      </select>
+      <br /><br />
 
-        <legend>Tempo :</legend>
+      <legend>Tempo :</legend>
 
-        <div>
-            <input type="checkbox" id="tempo" name="70" checked />
-            <label for="tempo">70</label>
-        </div>
+      <div>
+        <input type="checkbox" id="tempo" name="70" checked />
+        <label for="tempo">70</label>
+      </div>
 
-        <div>
-            <input type="checkbox" id="tempo" name="80" />
-            <label for="tempo">80</label>
-        </div>
-        <div>
-            <input type="checkbox" id="tempo" name="90" />
-            <label for="tempo">90</label>
-        </div> <br>
+      <div>
+        <input type="checkbox" id="tempo" name="80" />
+        <label for="tempo">80</label>
+      </div>
+      <div>
+        <input type="checkbox" id="tempo" name="90" />
+        <label for="tempo">90</label>
+      </div>
+      <br />
 
-        <input type="submit" id="add" value="AJOUTER">
-
+      <input type="submit" id="add" value="AJOUTER" />
     </fieldset>
 
-    <h3> Exercices réalisés </h3>
+    <h3>Exercices réalisés</h3>
     <ul>
-        <li>Instrument : </li>
-        <li>Nom de l'exercice : </li>
-        <li>Date : </li>
-        <li>Tempo : </li>
+      <li>Instrument :</li>
+      <li>Nom de l'exercice :</li>
+      <li>Date :</li>
+      <li>Tempo :</li>
     </ul>
-</body>
-
+  </body>
 </html>
