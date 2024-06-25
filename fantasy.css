@@ -1,0 +1,73 @@
+#titre {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    font-size: 60px;
+    margin-top: 2%;
+}
+
+#navigation {
+    background-color: rgb(233, 162, 223);
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+#container {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+form {
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #f1F1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#container h3 {
+    text-align: center;
+    width: 45%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+input [type=text],
+input [type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border:
+        1px solid #ccc;
+    box-sizing:
+        border-box;
+}
+
+input [type=submit] {
+
+    background-color: red;
+    color:
+        white;
+    padding: 14px 20px;
+    margin:
+        8px 0;
+    border: none;
+    cursor: pointer;
+    width:
+        100%;
+}
+
+input [type=submit]:hover {
+    background-color: blue;
+    color: #53af57;
+    border: 1px solid #53af57;
+}
+
+#add_exercice {
+    margin-top: 10%;
+}
+
+#tempo {
+    margin-left: 15%;
+}

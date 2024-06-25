@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="fantasy.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <h1 id="titre"> SiDoRé </h1>
+        <nav id = "navigation">
+            <a href="exos_realises.html">Exercices Réalisés</a>
+            <a href="banque_exos.html">Banque d'Exercices</a>
+            <a href="accueil.html">Mon Profil</a>
+            <a href="connexion.html">Se connecter</a>
+        </nav>
+    </header>
+    <div id="container">
+        <form action="verification.php " method="post">
+            <h3>Connexion</h3>
+            <label> <b> Mail</b></label><br><br>
+            <input type="text" placeholder="Entrez votre mail" name="usermail" required><br><br>
+            <label> <b> Mot de passe</b></label><br><br>
+            <input type="password" placeholder="Entrez votre mdp" name="password" required><br><br>
+            <input type="submit" id="submit" value="LOGIN">
+        </form>
+    </div>
+</body>
+
+</html>
