@@ -36,26 +36,53 @@ def get_user(user_id):
     
 @app.route('/user/add', methods=['POST'])
 def add_user() :
-    data = request.json
-    mail = data.get("mail")
-    password = data.get("password")
-    name = data.get("name")
-    firstname = data.get("firstname")
-    age = data.get("age")
+    mail = request.form.get("mail")
+    password = request.form.get("password")
+    name = request.form.get("name")
+    firstname = request.form.get("firstname")
+    age = request.form.get("age")
+
+    data={
+        'mail' : mail,
+        'password' : password,
+        'name' : name,
+        'firstname' : firstname,
+        'age' : age
+    }
+    
     if not name or not password or not firstname or not age or not mail:
         return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
     
-    return redirect("/")
+    response = requests.post(API_URL + "user", json=data)
+    if response.status_code == 201 or response.status_code == 200:
+        return redirect("/")
+    else:
+        return jsonify({'message': 'Failed to add user'}), response.status_code
     
 @app.route('/users/update/<user_id>', methods=['PUT'])
 def update_user(user_id) :
-    try:
-        response = requests.get(API_URL + "user/" + user_id)
-        response.raise_for_status()
-        users = response.json()
-        return jsonify(users)
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": str(e)}), 500
+    mail = request.form.get("mail")
+    password = request.form.get("password")
+    name = request.form.get("name")
+    firstname = request.form.get("firstname")
+    age = request.form.get("age")
+
+    data={
+        'mail' : mail,
+        'password' : password,
+        'name' : name,
+        'firstname' : firstname,
+        'age' : age
+    }
+    
+    if not name or not password or not firstname or not age or not mail:
+        return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
+    
+    response = requests.put(API_URL + "user/" + user_id, json=data)
+    if response.status_code == 201 or response.status_code == 200:
+        return redirect("/")
+    else:
+        return jsonify({'message': 'Failed to add user'}), response.status_code
     
 @app.route('/exercises/<session_id>', methods=['GET'])
 def getExercisesFromSession(session_id) :

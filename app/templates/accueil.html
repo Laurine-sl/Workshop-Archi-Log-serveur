@@ -24,50 +24,67 @@
     {% for user in users %} {% if loop.index is divisibleby 2 %}
 
     <div class="user user_even">
-      <p>Nom : {{ user.name }}</p>
-      <p>Prénom : {{user.firstname}}</p>
-      <p>Mail : {{ user.mail }}</p>
-      <p>Age : {{user.age}}</p>
+      <p>{{ user.name }}</p>
+      <p>{{user.firstname}}</p>
+      <p>{{ user.mail }}</p>
+      <p>{{user.age}} ans</p>
+      <button>Modify</button>
+      <button>Delete</button>
       <a href="/user/{{user.user_id}}">View Session</a>
     </div>
 
     {% else %}
 
     <div class="user user_odd">
-      <p>Nom : {{ user.name }}</p>
-      <p>Prénom : {{user.firstname}}</p>
-      <p>Mail : {{ user.mail }}</p>
-      <p>Age : {{user.age}}</p>
+      <p>{{ user.name }}</p>
+      <p>{{ user.firstname }}</p>
+      <p>{{ user.mail }}</p>
+      <p>{{ user.age }} ans</p>
+      <button>Modify</button>
+      <button>Delete</button>
       <a href="/user/{{user.user_id}}">View Session</a>
     </div>
 
     {% endif %} {% endfor %}
-    <button id="addUser">Add User</button>
-  </div>
-  <div id="container">
-    <form method="POST">
-      <h3>Inscription</h3>
-      <label> <b> Nom</b></label>
-      <br /><br />
-      <input type="text" placeholder="Entrez votre Nom" name="username" required /><br /><br />
-      <label> <b> Prénom</b></label>
-      <br /><br />
-      <input type="text" placeholder="Entrez votre Prénom" name="userfirstname" required /><br /><br />
-      <label> <b> Age</b></label>
-      <br /><br />
-      <input type="text" placeholder="Entrez votre Age" name="userage" required /><br /><br />
-      <label> <b> Mail</b></label>
-      <br /><br />
-      <input type="text" placeholder="Entrez votre mail" name="usermail" required /><br /><br />
-      <label> <b> Créer Votre Mot de passe</b></label><br /><br />
-      <input type="password" placeholder="Nouveau mdp" name="password" required /><br /><br />
-      <label> <b> Confirmez Votre Mot de passe</b></label><br /><br />
-      <input type="password" placeholder="Entrez votre mdp" name="password" required /><br /><br />
-      <input type="submit" id="submit" value="Bienvenue !" />
-    </form>
+    <button id="addUser" onclick="openForm()">Add User</button>
   </div>
 
+  <div class="container-form">
+      <div class="form">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <h2>Ajouter un utilisateur</h2>
+        <form action="/user/add" method="POST" class="add_form">
+          <h3>Inscription</h3>
+          <label> <b> Nom</b></label>
+          <br /><br />
+          <input id="name" type="text" placeholder="Entrez votre Nom" name="name" required /><br /><br />
+          <label> <b> Prénom</b></label>
+          <br /><br />
+          <input id="firstname" type="text" placeholder="Entrez votre Prénom" name="firstname" required /><br /><br />
+          <label> <b> Age</b></label>
+          <br /><br />
+          <input id="age" type="number" placeholder="Entrez votre Age" name="age" required /><br /><br />
+          <label> <b> Mail</b></label>
+          <br /><br />
+          <input id="mail" type="text" placeholder="Entrez votre mail" name="mail" required /><br /><br />
+          <label> <b> Créer Votre Mot de passe</b></label><br /><br />
+          <input id="password" type="password" placeholder="Nouveau mdp" name="password" required /><br /><br />
+          <input type="submit" id="submit" value="Ajouter" onclick="closeForm()" />
+        </form>
+      </div>
+    </div>
+
+    
+
   <script>
+
+    function openForm() {
+      document.querySelector('.container-form').style.visibility = 'visible';
+    }
+
+    function closeForm() {
+      document.querySelector('.container-form').style.visibility = 'hidden';
+    }
 
   </script>
 </body>
