@@ -1,8 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  top: 0;
+}
+
 #titre {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-align: center;
   font-size: 60px;
   margin: 2% 0;
+  margin-top: 5%;
 }
 
 header p {
@@ -17,6 +24,8 @@ header p {
   background: #000;
   display: grid;
   grid-template-columns: repeat(4, 25%);
+  width: 100%;
+  position: fixed;
 }
 
 nav a {
