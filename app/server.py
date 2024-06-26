@@ -2,7 +2,7 @@ import os
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, redirect, render_template, request
 from flask_cors import CORS
 
 load_dotenv()
@@ -24,9 +24,6 @@ def get_users():
         users = []
     return render_template("accueil.html", users=users)
     
-# @app.route('/users', methods=['GET'])
-# def get_users():
-    
 @app.route('/user/<user_id>', methods=['GET'])
 def get_user(user_id):
     try:
@@ -36,6 +33,19 @@ def get_user(user_id):
         return jsonify(users)
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/user/add', methods=['POST'])
+def add_user() :
+    data = request.json
+    mail = data.get("mail")
+    password = data.get("password")
+    name = data.get("name")
+    firstname = data.get("firstname")
+    age = data.get("age")
+    if not name or not password or not firstname or not age or not mail:
+        return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
+    
+    return redirect("/")
     
 @app.route('/users/update/<user_id>', methods=['PUT'])
 def update_user(user_id) :
