@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <link href="../static/fantasy.css" rel="stylesheet" />
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <link href="../static/fantasy.css" rel="stylesheet" />
+</head>
 
   <body>
     <header>
@@ -17,9 +18,9 @@
     </header>
     <h2>Session de</h2>
 
-    <div class="users">
-      <h1>Liste des utilisateurs</h1>
-      {% for user in users %} {% if loop.index is divisibleby 2 %}
+  <div class="users">
+    <h1>Liste des utilisateurs</h1>
+    {% for user in users %} {% if loop.index is divisibleby 2 %}
 
       <div class="user user_even">
         <p>Nom : {{ user.name }}</p>
@@ -29,7 +30,7 @@
         <a href="/user/{{user.user_id}}">View Session</a>
       </div>
 
-      {% else %}
+    {% else %}
 
       <div class="user user_odd">
         <p>Nom : {{ user.name }}</p>
