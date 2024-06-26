@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <link href="../static/fantasy.css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <header>
-      <nav id="navigation">
-        <a href="/my_exercises">Exercices Réalisés</a>
-        <a href="/exercises_bank">Banque d'Exercices</a>
-        <a href="/profil">Mon Profil</a>
-        <a href="/connection">Se connecter</a>
-      </nav>
-      <h1 id="titre">SiDoRé</h1>
-    </header>
-    <h2>Session de</h2>
+<head>
+  <meta charset="UTF-8" />
+  <link href="../static/fantasy.css" rel="stylesheet" />
+</head>
 
-    <div class="users">
-      <h1>Liste des utilisateurs</h1>
-      {% for user in users %} {% if loop.index is divisibleby 2 %}
+<body>
+  <header>
+    <nav id="navigation">
+      <a href="/my_exercises">Exercices Réalisés</a>
+      <a href="/exercises_bank">Banque d'Exercices</a>
+      <a href="/profil">Mon Profil</a>
+      <a href="/connection">Se connecter</a>
+    </nav>
+    <h1 id="titre">SiDoRé</h1>
+    <p> Vivez votre musique !</p>
+  </header>
+  <h2>Session de</h2>
 
-      <div class="user user_even">
-        <p>Nom : {{ user.name }}</p>
-        <p>Prénom : {{user.firstname}}</p>
-        <p>Mail : {{ user.mail }}</p>
-        <p>Age : {{user.age}}</p>
-        <a href="">View Session</a>
-      </div>
+  <div class="users">
+    <h1>Liste des utilisateurs</h1>
+    {% for user in users %} {% if loop.index is divisibleby 2 %}
 
-      {% else %}
-
-      <div class="user user_odd">
-        <p>Nom : {{ user.name }}</p>
-        <p>Prénom : {{user.firstname}}</p>
-        <p>Mail : {{ user.mail }}</p>
-        <p>Age : {{user.age}}</p>
-        <a href="">View Session</a>
-      </div>
-
-      {% endif %} {% endfor %}
+    <div class="user user_even">
+      <p>Nom : {{ user.name }}</p>
+      <p>Prénom : {{user.firstname}}</p>
+      <p>Mail : {{ user.mail }}</p>
+      <p>Age : {{user.age}}</p>
+      <a href="">View Session</a>
     </div>
-  </body>
+
+    {% else %}
+
+    <div class="user user_odd">
+      <p>Nom : {{ user.name }}</p>
+      <p>Prénom : {{user.firstname}}</p>
+      <p>Mail : {{ user.mail }}</p>
+      <p>Age : {{user.age}}</p>
+      <a href="">View Session</a>
+    </div>
+
+    {% endif %} {% endfor %}
+  </div>
+</body>
+
 </html>
