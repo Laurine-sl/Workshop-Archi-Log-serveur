@@ -62,3 +62,7 @@ def getExercises() :
 @app.route('/exercice/<exercise_id>', methods=['GET'])
 def getExerciseById(exercise_id) :
     return "Exercise Detail"
+
+@app.route('/connection')
+def connection():
+    return render_template("connexion.html")

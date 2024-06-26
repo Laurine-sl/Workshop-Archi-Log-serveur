@@ -2,12 +2,13 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-align: center;
   font-size: 60px;
-  margin-top: 2%;
+  margin: 2% 0;
 }
 
 header p {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-align: center;
+  margin: 1% 0;
 }
 
 #navigation {
@@ -59,7 +60,6 @@ input [type="password"] {
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  box-sizing: border-box;
 }
 
 input[type="submit"] {

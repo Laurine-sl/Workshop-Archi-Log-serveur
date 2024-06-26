@@ -6,46 +6,70 @@
   <link href="../static/fantasy.css" rel="stylesheet" />
 </head>
 
-  <body>
-    <header>
-      <nav id="navigation">
-        <a href="/exercise">Exercices Réalisés</a>
-        <a href="/exercises">Banque d'Exercices</a>
-        <a href="/profil">Mon Profil</a>
-        <a href="/connection">Se connecter</a>
-      </nav>
-      <h1 id="titre">SiDoRé</h1>
-    </header>
-    <h2>Session de</h2>
+<body>
+  <header>
+    <nav id="navigation">
+      <a href="/exercise">Exercices Réalisés</a>
+      <a href="/exercises">Banque d'Exercices</a>
+      <a href="/profil">Mon Profil</a>
+      <a href="/connection">Se connecter</a>
+    </nav>
+    <h1 id="titre">SiDoRé</h1>
+    <p> Vivez votre musique !</p>
+  </header>
+  <h2>Session de</h2>
 
   <div class="users">
     <h1>Liste des utilisateurs</h1>
     {% for user in users %} {% if loop.index is divisibleby 2 %}
 
-      <div class="user user_even">
-        <p>Nom : {{ user.name }}</p>
-        <p>Prénom : {{user.firstname}}</p>
-        <p>Mail : {{ user.mail }}</p>
-        <p>Age : {{user.age}}</p>
-        <a href="/user/{{user.user_id}}">View Session</a>
-      </div>
+    <div class="user user_even">
+      <p>Nom : {{ user.name }}</p>
+      <p>Prénom : {{user.firstname}}</p>
+      <p>Mail : {{ user.mail }}</p>
+      <p>Age : {{user.age}}</p>
+      <a href="/user/{{user.user_id}}">View Session</a>
+    </div>
 
     {% else %}
 
-      <div class="user user_odd">
-        <p>Nom : {{ user.name }}</p>
-        <p>Prénom : {{user.firstname}}</p>
-        <p>Mail : {{ user.mail }}</p>
-        <p>Age : {{user.age}}</p>
-        <a href="/user/{{user.user_id}}">View Session</a>
-      </div>
-
-      {% endif %} {% endfor %}
-      <button id="addUser">Add User</button>
+    <div class="user user_odd">
+      <p>Nom : {{ user.name }}</p>
+      <p>Prénom : {{user.firstname}}</p>
+      <p>Mail : {{ user.mail }}</p>
+      <p>Age : {{user.age}}</p>
+      <a href="/user/{{user.user_id}}">View Session</a>
     </div>
 
-    <script>
+    {% endif %} {% endfor %}
+    <button id="addUser">Add User</button>
+  </div>
+  <div id="container">
+    <form method="POST">
+      <h3>Inscription</h3>
+      <label> <b> Nom</b></label>
+      <br /><br />
+      <input type="text" placeholder="Entrez votre Nom" name="username" required /><br /><br />
+      <label> <b> Prénom</b></label>
+      <br /><br />
+      <input type="text" placeholder="Entrez votre Prénom" name="userfirstname" required /><br /><br />
+      <label> <b> Age</b></label>
+      <br /><br />
+      <input type="text" placeholder="Entrez votre Age" name="userage" required /><br /><br />
+      <label> <b> Mail</b></label>
+      <br /><br />
+      <input type="text" placeholder="Entrez votre mail" name="usermail" required /><br /><br />
+      <label> <b> Créer Votre Mot de passe</b></label><br /><br />
+      <input type="password" placeholder="Nouveau mdp" name="password" required /><br /><br />
+      <label> <b> Confirmez Votre Mot de passe</b></label><br /><br />
+      <input type="password" placeholder="Entrez votre mdp" name="password" required /><br /><br />
+      <input type="submit" id="submit" value="Bienvenue !" />
+    </form>
+  </div>
 
-    </script>
-  </body>
+  <script>
+
+  </script>
+</body>
+
 </html>
