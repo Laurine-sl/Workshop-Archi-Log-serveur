@@ -27,7 +27,7 @@ def get_users():
 # @app.route('/users', methods=['GET'])
 # def get_users():
     
-@app.route('/users/<user_id>', methods=['GET'])
+@app.route('/user/<user_id>', methods=['GET'])
 def get_user(user_id):
     try:
         response = requests.get(API_URL + "user/" + user_id)
@@ -46,3 +46,19 @@ def update_user(user_id) :
         return jsonify(users)
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/exercises/<session_id>', methods=['GET'])
+def getExercisesFromSession(session_id) :
+    return "Exercises Session"
+
+@app.route('/exercises/<session_id>/<exercise_id>', methods=['GET'])
+def getExerciseFromSessionByIds(session_id, exercise_id) :
+    return "Exercise id Session Detail"
+
+@app.route('/exercises', methods=['GET'])
+def getExercises() :
+    return "Exercises Available"
+
+@app.route('/exercice/<exercise_id>', methods=['GET'])
+def getExerciseById(exercise_id) :
+    return "Exercise Detail"

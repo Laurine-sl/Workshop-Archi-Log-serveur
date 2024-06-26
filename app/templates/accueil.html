@@ -8,8 +8,8 @@
   <body>
     <header>
       <nav id="navigation">
-        <a href="/my_exercises">Exercices Réalisés</a>
-        <a href="/exercises_bank">Banque d'Exercices</a>
+        <a href="/exercise">Exercices Réalisés</a>
+        <a href="/exercises">Banque d'Exercices</a>
         <a href="/profil">Mon Profil</a>
         <a href="/connection">Se connecter</a>
       </nav>
@@ -26,7 +26,7 @@
         <p>Prénom : {{user.firstname}}</p>
         <p>Mail : {{ user.mail }}</p>
         <p>Age : {{user.age}}</p>
-        <a href="">View Session</a>
+        <a href="/user/{{user.user_id}}">View Session</a>
       </div>
 
       {% else %}
@@ -36,10 +36,15 @@
         <p>Prénom : {{user.firstname}}</p>
         <p>Mail : {{ user.mail }}</p>
         <p>Age : {{user.age}}</p>
-        <a href="">View Session</a>
+        <a href="/user/{{user.user_id}}">View Session</a>
       </div>
 
       {% endif %} {% endfor %}
+      <button id="addUser">Add User</button>
     </div>
+
+    <script>
+
+    </script>
   </body>
 </html>

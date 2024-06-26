@@ -119,3 +119,21 @@ input[type="submit"]:hover {
 .user a:hover {
   background-color: #59036a;
 }
+
+#addUser {
+  padding: 5px 10px;
+  width: 150px;
+  margin: 10px 0;
+  margin-right: 0;
+  position: relative;
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+  transition: 0.1s ease-in-out;
+}
+
+#addUser:hover {
+  background-color: #59036a;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+}
