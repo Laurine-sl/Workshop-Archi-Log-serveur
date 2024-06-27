@@ -32,6 +32,10 @@ header p {
   width: 100%;
   position: fixed;
 }
+#session {
+  margin-bottom: 35%;
+  text-align: center;
+}
 
 nav a {
   text-decoration: none;
