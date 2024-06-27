@@ -4,12 +4,17 @@
   top: 0;
 }
 
+a{
+  text-decoration: none;
+}
+
 #titre {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-align: center;
   font-size: 60px;
   margin: 2% 0;
   margin-top: 5%;
+  color: #074095;
 }
 
 header p {
