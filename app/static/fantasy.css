@@ -146,6 +146,7 @@ nav a:hover {
 }
 
 .form {
+  margin: auto;
   font-size: 1.2em;
   display: flex;
   flex-direction: column;
@@ -153,7 +154,7 @@ nav a:hover {
   text-align: center;
   width: 40%;
   height: 80%;
-  padding: 5%;
+  padding: 2%;
   border: 1px solid #f1f1f1;
   background-color: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
