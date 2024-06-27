@@ -19,7 +19,6 @@ load_dotenv()
 
 API_URL = os.getenv('API_URL')
 SECRET_TOKEN = os.getenv('SECRET_TOKEN')
-print(API_URL)
 
 app = Flask(__name__)
 CORS(app)
@@ -41,7 +40,7 @@ def home():
         return redirect('/login')
     
     user_info = verify_jwt(jwt_token)
-    if user_info.get('admin'):
+    if user_info.get('admin', ''):
         try:
             response = requests.get(API_URL + "user")
             response.raise_for_status()
@@ -49,7 +48,7 @@ def home():
         except requests.exceptions.RequestException as e:
             print({"error": str(e)}), 500
             users = []
-        return render_template("accueilAdmin.html", users=users, name=user_info.get('name'), firstname=user_info.get('firstname'))
+        return render_template("accueilAdmin.html", users=users)
     return render_template("accueil.html", name=user_info.get('name',''), firstname=user_info.get('firstname', ''))
 
 @app.route('/login', methods=['GET','POST'])
