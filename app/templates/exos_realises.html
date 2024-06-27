@@ -8,53 +8,38 @@
   <body>
     <header>
       <nav id="navigation">
-        <a href="/exercises">Exercices Réalisés</a>
+        <a href="/myexercises">Exercices Réalisés</a>
         <a href="/exercises">Banque d'Exercices</a>
         <a href="/profil">Mon Profil</a>
         <a href="/logout">Se déconnecter</a>
       </nav>
       <a href="/"><h1 id="titre">SiDoRé</h1></a>
     </header>
-    <fieldset id="add_exercice">
-      <legend>Ajouter un nouvel exercice</legend>
+
+    <form class="form" action="/myexercises/add" method="POST">
+      <h3>Ajouter un nouvel exercice</h3>
       <br />
       <label for="title-select">Titre : </label>
-
-      <select name="titre" id="titre-select">
-        <option value="">--Veuillez choisir votre exercice--</option>
-        <option value="name_exercice1">batterie1</option>
-        <option value="name_exercice2">batterie2</option>
+      <select name="title" id="title">
+        {% for exercise in allExercises %}
+          <option value="name_exercice1">{{exercise.title}}</option>
+        {%endfor%}
       </select>
       <br /><br />
 
-      <legend>Tempo :</legend>
-
-      <div>
-        <input type="checkbox" id="tempo" name="70" checked />
-        <label for="tempo">70</label>
-      </div>
-
-      <div>
-        <input type="checkbox" id="tempo" name="80" />
-        <label for="tempo">80</label>
-      </div>
-      <div>
-        <input type="checkbox" id="tempo" name="90" />
-        <label for="tempo">90</label>
-      </div>
-      <br />
+      <label>Tempo :</label>
+      <input type="tempo" id="tempo" name="tempo"/>
 
       <input type="submit" id="add" value="AJOUTER" />
-    </fieldset>
+    </form>
 
     <h3>Exercices réalisés</h3>
     {% for exercise in exercises  %}
-    <ul>
-      <li>Instrument : {{exercise.instrument_id}} </li>
-      <li>Nom de l'exercice : {{exercise.title}} </li>
-      <li>Date : {{exercise.date}} </li>
-      <li>Tempo : {{exercise.tempo}} </li>
-    </ul>
+      <ul>
+        <li>Nom de l'exercice : {{exercise.title}} </li>
+        <li>Date : {{exercise.date}} </li>
+        <li>Tempo : {{exercise.tempo}} </li>
+      </ul>
     {% endfor %}
 
     <footer class="footer">

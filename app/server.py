@@ -25,7 +25,6 @@ CORS(app)
 def verify_jwt(token):
     try:
         decoded = jwt.decode(token, SECRET_TOKEN, algorithms=['HS256'])
-        print(decoded)
         return decoded
     except jwt.ExpiredSignatureError:
         return None
@@ -183,19 +182,21 @@ def delete_user(user_id) :
 @app.route('/myexercises', methods=['GET'])
 def getExercisesFromSession() :
     jwt_token = request.cookies.get('jwt_token')
-    
+
     if not jwt_token:
         return redirect('/login')
     
     user_info = verify_jwt(jwt_token)
-    try:
-        userSession = requests.get(API_URL + "session/user/" + user_info.get("user_id"))
-        response = requests.get(API_URL + "exercise/" + userSession)
+    userSession = getSessionId(user_info)
+    response = requests.get(API_URL + "session/exercise/" + str(userSession.get("session_id")))
+    
+    if response.status_code == 200 or response.status_code == 201:
         response.raise_for_status()
         exercises = response.json()
-        return render_template('exos_realises.html', exercises=exercises)
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": str(e)}), 500
+    else :
+        exercises=[]
+    allExercises = getAllExercises()
+    return render_template("exos_realises.html", allExercises=allExercises, exercises=exercises)
 
 @app.route('/exercises/<session_id>/<exercise_id>', methods=['GET'])
 def getExerciseFromSessionByIds(session_id, exercise_id) :
@@ -203,10 +204,57 @@ def getExerciseFromSessionByIds(session_id, exercise_id) :
 
 @app.route('/exercises', methods=['GET'])
 def getExercises() :
-    return "Exercises Available"
+    allExercises = getAllExercises()
+    print(allExercises)
+    return render_template("banque_exos.html", exercises=allExercises)
 
-@app.route('/exercice/<exercise_id>', methods=['GET'])
-def getExerciseById(exercise_id) :
-    return "Exercise Detail"
+@app.route('/myexercises/add', methods=['GET', 'POST'])
+def addExercise() :
+    jwt_token = request.cookies.get('jwt_token')
+    
+    if not jwt_token:
+        return redirect("/")
+    user_info = verify_jwt(jwt_token)
 
+    title = request.form.get("title")
+    tempo = request.form.get("tempo")
+    print(title)
+    
+    exercise_id = getExerciseIdByTitle(title)
+    
+    data={
+        'exercice_id' : exercise_id,
+        'tempo' : tempo
+    }
+    
+    if not title or not tempo:
+        return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
+    
+    userSession = getSessionId(user_info)
+    response = requests.post(API_URL + "session/exercise" + userSession.get("session_id"), json=data)
+    if response.status_code == 201 or response.status_code == 200:
+        return redirect("/myexercises")
+    else:
+        return jsonify({'message': 'Failed to add user'}), response.status_code
+        
+def getAllExercises():
+    response = requests.get(API_URL + "exercise")
+    response.raise_for_status()
+    allExercises = response.json()
+    return allExercises
+    
+def getSessionId(user_info):
+    userId = user_info.get("id")
+    responseSession = requests.get(API_URL + "session/user/" + str(userId))
+    responseSession.raise_for_status()
+    return responseSession.json()
 
+def getInstrumentById(exercise_id):
+    response = requests.get(API_URL + "exercise/instrument/" + exercise_id)
+    response.raise_for_status()
+    return response.json()
+
+def getExerciseIdByTitle(title):
+    response = requests.get(API_URL + "exercise/id/" + title)
+    response.raise_for_status()
+    return response.json()

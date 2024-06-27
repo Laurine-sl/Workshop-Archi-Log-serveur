@@ -8,7 +8,7 @@
   <body>
     <header>
       <nav id="navigation">
-        <a href="/exercises">Exercices Réalisés</a>
+        <a href="/myexercises">Exercices Réalisés</a>
         <a href="/exercises">Banque d'Exercices</a>
         <a href="/profil">Mon Profil</a>
         <a href="/logout">Se déconnecter</a>
@@ -16,6 +16,14 @@
       <a href="/"><h1 id="titre">SiDoRé</h1></a>
     </header>
     <h3>Exercices</h3>
+
+    {%for exercise in exercises%}
+    <div>
+      <p>Titre : {{exercise.title}}</p>
+      <p>Instrument : {{exercise.instrument_id}}</p>
+    </div>
+    <br/> <br/>
+    {%endfor%}
 
     <footer class="footer">
       <div class="waves">
