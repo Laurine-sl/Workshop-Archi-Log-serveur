@@ -4,7 +4,7 @@
   top: 0;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -112,18 +112,10 @@ nav a:hover {
   cursor: pointer;
 }
 
-#footer {
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  background: #515050;
-  display: grid;
-  width: 100%;
-}
-
 .container-form {
   visibility: hidden;
   position: fixed;
-  z-index: 1;
+  z-index: 4;
   left: 0;
   top: 0;
   width: 100%;
@@ -208,7 +200,6 @@ input[type="submit"]:hover {
   width: 50%;
   text-align: center;
   margin-top: 2%;
-  margin-bottom: 30%;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
@@ -217,10 +208,10 @@ input[type="submit"]:hover {
   position: relative;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 90%;
   background: #3586ff;
   min-height: 100px;
-  padding: 20px 30px;
+  padding: 20px 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -268,6 +259,10 @@ input[type="submit"]:hover {
   opacity: 1;
 }
 
+footer {
+  margin-top: 150px;
+}
+
 .footer p {
   color: #fff;
   margin: 15px 0 10px 0;
@@ -287,28 +282,28 @@ input[type="submit"]:hover {
 }
 
 .wave#wave1 {
-  z-index: 1000;
+  z-index: 3;
   opacity: 1;
   bottom: 0;
   animation: animateWaves 4s linear infinite;
 }
 
 .wave#wave2 {
-  z-index: 999;
+  z-index: 2;
   opacity: 0.5;
   bottom: 10px;
   animation: animate 4s linear infinite !important;
 }
 
 .wave#wave3 {
-  z-index: 1000;
+  z-index: 3;
   opacity: 0.2;
   bottom: 15px;
   animation: animateWaves 3s linear infinite;
 }
 
 .wave#wave4 {
-  z-index: 999;
+  z-index: 2;
   opacity: 0.7;
   bottom: 20px;
   animation: animate 3s linear infinite;

@@ -41,7 +41,7 @@ def home():
         return redirect('/login')
     
     user_info = verify_jwt(jwt_token)
-    if user_info.get('admin', ''):
+    if user_info.get('admin'):
         try:
             response = requests.get(API_URL + "user")
             response.raise_for_status()
@@ -141,7 +141,7 @@ def add_user() :
     if not name or not password or not firstname or not age or not mail:
         return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
     
-    response = requests.post(API_URL + "user", json=data)
+    response = requests.post(API_URL + "user/signup", json=data)
     if response.status_code == 201 or response.status_code == 200:
         return redirect("/")
     else:
