@@ -17,7 +17,11 @@
     <a href="/"><h1 id="titre">SiDoRé</h1></a>
     <p> Vivez votre musique !</p>
   </header>
-  <h2 id="session"> Session de {{user.firstname}} {{user.name}}</h2>   
+  <h2 id="session"> Session de {{user.get("firstname")}} {{user.get("name")}}</h2>  
+  <div>
+    <h3> Votre mail : {{user.get("mail")}} </h3>
+    <h3 class="last"> Votre age : {{user.get("age")}} </h3>
+  </div> 
 
   <footer class="footer">
     <div class="waves">

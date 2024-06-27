@@ -49,7 +49,7 @@ def home():
             print({"error": str(e)}), 500
             users = []
         return render_template("accueilAdmin.html", users=users)
-    return render_template("accueil.html", user=user_info)
+    return render_template("profil.html", user=user_info)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -111,15 +111,16 @@ def signUp() :
         return render_template("inscription.html")
     
     
-@app.route('/user/<user_id>', methods=['GET'])
-def get_user(user_id):
-    try:
-        response = requests.get(API_URL + "user/" + user_id)
-        response.raise_for_status()
-        users = response.json()
-        return jsonify(users)
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": str(e)}), 500
+@app.route('/profil', methods=['GET'])
+def get_user():
+    jwt_token = request.cookies.get('jwt_token')
+    
+    if not jwt_token:
+        return redirect('/login')
+    
+    user_info = verify_jwt(jwt_token)
+    
+    return render_template("profil.html", user=user_info)
     
 @app.route('/user/add', methods=['POST'])
 def add_user() :
@@ -200,3 +201,5 @@ def getExercises() :
 @app.route('/exercice/<exercise_id>', methods=['GET'])
 def getExerciseById(exercise_id) :
     return "Exercise Detail"
+
+
