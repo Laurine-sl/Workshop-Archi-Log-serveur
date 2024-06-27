@@ -26,11 +26,12 @@ CORS(app)
 def verify_jwt(token):
     try:
         decoded = jwt.decode(token, SECRET_TOKEN, algorithms=['HS256'])
-        return decoded  # Retourne le payload du JWT (par exemple, {'id': 1, 'username': 'utilisateur'})
+        print(decoded)
+        return decoded
     except jwt.ExpiredSignatureError:
-        return None  # Le JWT est expiré
-    except jwt.InvalidTokenError:
-        return None  # JWT invalide
+        return None
+    except jwt.InvalidTokenError as e:
+        print({"msg": f"Erreur de JWT: {str(e)}"})
 
 @app.route('/')
 def home():
@@ -49,7 +50,7 @@ def home():
             print({"error": str(e)}), 500
             users = []
         return render_template("accueilAdmin.html", users=users)
-    return render_template("accueil.html", name=user_info.get('name',''), firstname=user_info.get('firstname', ''))
+    return render_template("accueil.html", user=user_info)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
