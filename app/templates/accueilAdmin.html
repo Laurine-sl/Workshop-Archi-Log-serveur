@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <link href="../static/fantasy.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <nav id="navigation">
+      <a href="/exercise">Exercices Réalisés</a>
+      <a href="/exercises">Banque d'Exercices</a>
+      <a href="/profil">Mon Profil</a>
+      <a href="/login">Se connecter</a>
+    </nav>
+    <h1 id="titre">SiDoRé</h1>
+    <p> Vivez votre musique !</p>
+    <a href="/logout">Log out</a>
+  </header>
+  <h2>Session de {{firstname}} {{name}}</h2>
+
+  <div class="users">
+    <h1>Liste des utilisateurs</h1>
+    {% for user in users %} {% if loop.index is divisibleby 2 %}
+
+    <div class="user user_even" data-user-id="{{user.user_id}}">
+      <p>{{ user.name }}</p>
+      <p>{{user.firstname}}</p>
+      <p>{{ user.mail }}</p>
+      <p>{{user.age}} ans</p>
+      <button class="edit-button" data-user-id="{{user.user_id}}">Modify</button>
+      <button class="delete-button" data-user-id="{{user.user_id}}">Delete</button>
+      <a href="/user/{{user.user_id}}">View Session</a>
+    </div>
+
+    {% else %}
+
+    <div class="user user_odd">
+      <p>{{ user.name }}</p>
+      <p>{{ user.firstname }}</p>
+      <p>{{ user.mail }}</p>
+      <p>{{ user.age }} ans</p>
+      <button class="edit-button" data-user-id="{{user.user_id}}">Modify</button>
+      <button class="delete-button" data-user-id="{{user.user_id}}">Delete</button>
+      <a href="/user/{{user.user_id}}">View Session</a>
+    </div>
+
+    {% endif %} {% endfor %}
+    <button id="addUser" onclick="openAddForm()">Add User</button>
+  </div>
+
+  <div class="container-form">
+      <div class="form">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <h2>Ajouter un utilisateur</h2>
+        <form action="/user/add" method="POST" class="form-action">
+          <h3>Inscription</h3>
+          <label> <b> Nom</b></label>
+          <br /><br />
+          <input id="name" type="text" placeholder="Entrez votre Nom" name="name" required /><br /><br />
+          <label> <b> Prénom</b></label>
+          <br /><br />
+          <input id="firstname" type="text" placeholder="Entrez votre Prénom" name="firstname" required /><br /><br />
+          <label> <b> Age</b></label>
+          <br /><br />
+          <input id="age" type="number" placeholder="Entrez votre Age" name="age" required /><br /><br />
+          <label> <b> Mail</b></label>
+          <br /><br />
+          <input id="mail" type="text" placeholder="Entrez votre mail" name="mail" required /><br /><br />
+          <label> <b> Créer Votre Mot de passe</b></label><br /><br />
+          <input id="password" type="password" placeholder="Nouveau mdp" name="password" required /><br /><br />
+          <input id="submit-button" type="submit" id="submit" onclick="closeForm()" />
+        </form>
+      </div>
+    </div>
+
+    <footer> 
+        <nav id="footer">
+          <a >À propos</a>
+          <a >Aide </a>
+          <a >Confidentialité</a>
+          <a >Contact</a>
+        </nav>
+      </footer>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.edit-button').forEach(button => {
+        button.addEventListener('click', function() {
+          var userId = this.dataset.userId;
+          openModifyForm(userId);
+        });
+      });
+      document.querySelectorAll('.delete-button').forEach(button =>{
+        button.addEventListener('click', function() {
+          var userId = this.dataset.userId;
+          window.location.href = `user/delete/${userId}`;
+        })
+      });
+    });
+
+    function openModifyForm(userId) {
+      container_form = document.querySelector('.container-form');
+      form = document.querySelector('.form-action');
+      submit_button = document.querySelector('#submit-button');
+      form.action = "user/update/" + userId;
+      submit_button.setAttribute('value', 'Update');
+      container_form.style.visibility = 'visible';
+    }
+
+    function openAddForm(){
+      form = document.querySelector('.form-action');
+      submit_button = document.querySelector('#submit-button');
+      form.action = "user/add";
+      submit_button.setAttribute('value', 'Add');
+      document.querySelector('.container-form').style.visibility = 'visible';
+    }
+
+    function closeForm() {
+      document.querySelector('.container-form').style.visibility = 'hidden';
+    }
+
+  </script>
+</body>
+
+</html>

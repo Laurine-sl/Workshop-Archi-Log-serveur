@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="../static/fantasy.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <nav id="navigation">
+        <a href="/exercises/{{session_id}}">Exercices Réalisés</a>
+        <a href="/exercises">Banque d'Exercices</a>
+        <a href="/profil">Mon Profil</a>
+        <a href="/connection">Se connecter</a>
+      </nav>
+      <h1 id="titre">SiDoRé</h1>
+      <p>Vivez votre musique !</p>
+    </header>
+    
+    <div>
+        <div class="form">
+          <h2>Ajouter un utilisateur</h2>
+          <form action="/signup" method="POST" class="form-action">
+            <h3>Inscription</h3>
+            <label> <b> Nom</b></label>
+            <br /><br />
+            <input id="name" type="text" placeholder="Entrez votre Nom" name="name" required /><br /><br />
+            <label> <b> Prénom</b></label>
+            <br /><br />
+            <input id="firstname" type="text" placeholder="Entrez votre Prénom" name="firstname" required /><br /><br />
+            <label> <b> Age</b></label>
+            <br /><br />
+            <input id="age" type="number" placeholder="Entrez votre Age" name="age" required /><br /><br />
+            <label> <b> Mail</b></label>
+            <br /><br />
+            <input id="mail" type="text" placeholder="Entrez votre mail" name="mail" required /><br /><br />
+            <label> <b> Créer Votre Mot de passe</b></label><br /><br />
+            <input id="password" type="password" placeholder="Nouveau mdp" name="password" required /><br /><br />
+            <input id="submit-button" type="submit" id="submit" onclick="closeForm()" />
+          </form>
+        </div>
+      </div>
+
+  </body>
+</html>
