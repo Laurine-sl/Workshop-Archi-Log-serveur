@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <link href="../static/fantasy.css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <header>
-      <nav id="navigation">
-        <a href="/exercises/{{session_id}}">Exercices Réalisés</a>
-        <a href="/exercises">Banque d'Exercices</a>
-        <a href="/profil">Mon Profil</a>
-        <a href="/login">Se connecter</a>
-      </nav>
-      <a href="/"><h1 id="titre">SiDoRé</h1></a>
-      <p>Vivez votre musique !</p>
-    </header>
-    <div id="container">
-      <form action="/login" method="POST">
-        <h3>Connexion</h3>
-        <label> <b> Mail</b></label
-        ><br /><br />
-        <input
-          type="text"
-          placeholder="Entrez votre mail"
-          name="mail"
-          required
-        /><br /><br />
-        <label> <b> Mot de passe</b></label
-        ><br /><br />
-        <input
-          type="password"
-          placeholder="Entrez votre mdp"
-          name="password"
-          required
-        /><br /><br />
-        <input type="submit" id="submit" value="LOGIN" />
-      </form>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link href="../static/fantasy.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <nav id="navigation">
+      <a href="/exercises">Exercices Réalisés</a>
+      <a href="/exercises">Banque d'Exercices</a>
+      <a href="/profil">Mon Profil</a>
+      <a href="/login">Se connecter</a>
+    </nav>
+    <a href="/">
+      <h1 id="titre">SiDoRé</h1>
+    </a>
+    <p>Vivez votre musique !</p>
+  </header>
+  <fieldset id="container">
+    <form action="/login" method="POST">
+      <legend> <b>Connexion</b></legend>
+      <br />
+      <label> <b> Mail : </b></label><br /><br />
+      <input type="text" placeholder="Entrez votre mail" name="mail" required /><br /><br />
+      <label> <b> Mot de passe : </b></label><br /><br />
+      <input type="password" placeholder="Entrez votre mdp" name="password" required /><br /><br />
+      <input type="submit" id="submit" value="LOGIN" />
+    </form>
+  </fieldset>
+</body>
+
 </html>
