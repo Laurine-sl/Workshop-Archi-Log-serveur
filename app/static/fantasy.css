@@ -197,3 +197,10 @@ input[type="submit"]:hover {
   padding: 20px;
   width: 40%;
 }
+
+#container {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  margin-top: 10%;
+}

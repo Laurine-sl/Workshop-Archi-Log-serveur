@@ -180,9 +180,15 @@ def delete_user(user_id) :
     else:
         return jsonify({'message': 'Failed to add user'}), response.status_code
     
-@app.route('/exercises/<session_id>', methods=['GET'])
-def getExercisesFromSession(session_id) :
-    return "Exercises Session"
+@app.route('/exercises', methods=['GET'])
+def getExercisesFromSession() :
+    try:
+        response = requests.get(API_URL + "exercise/2")
+        response.raise_for_status()
+        exercises = response.json()
+        return render_template('exos_realises.html', exercises=exercises)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/exercises/<session_id>/<exercise_id>', methods=['GET'])
 def getExerciseFromSessionByIds(session_id, exercise_id) :

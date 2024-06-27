@@ -8,12 +8,12 @@
   <body>
     <header>
       <nav id="navigation">
-        <a href="/exercises/{{session_id}}">Exercices Réalisés</a>
+        <a href="/exercises">Exercices Réalisés</a>
         <a href="/exercises">Banque d'Exercices</a>
         <a href="/profil">Mon Profil</a>
         <a href="/login">Se connecter</a>
       </nav>
-      <a href"/"><h1 id="titre">SiDoRé</h1></a>
+      <a href="/"><h1 id="titre">SiDoRé</h1></a>
     </header>
     <fieldset id="add_exercice">
       <legend>Ajouter un nouvel exercice</legend>
@@ -48,11 +48,13 @@
     </fieldset>
 
     <h3>Exercices réalisés</h3>
+    {% for exercise in exercises  %}
     <ul>
-      <li>Instrument :</li>
-      <li>Nom de l'exercice :</li>
-      <li>Date :</li>
-      <li>Tempo :</li>
+      <li>Instrument : {{exercise.instrument_id}} </li>
+      <li>Nom de l'exercice : {{exercise.title}} </li>
+      <li>Date : {{exercise.date}} </li>
+      <li>Tempo : {{exercise.tempo}} </li>
     </ul>
+    {% endfor %}
   </body>
 </html>
