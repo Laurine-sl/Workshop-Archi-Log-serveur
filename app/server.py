@@ -104,7 +104,7 @@ def signUp() :
             if not name or not password or not firstname or not age or not mail:
                 return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
             
-            response = requests.post(API_URL + "user", json=data)
+            response = requests.post(API_URL + "user/signup", json=data)
             if response.status_code == 201 or response.status_code == 200:
                 return redirect("/login")
             else:
