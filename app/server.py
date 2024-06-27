@@ -1,5 +1,4 @@
 import os
-from functools import wraps
 
 import jwt
 import requests
@@ -117,8 +116,8 @@ def get_user(user_id):
     try:
         response = requests.get(API_URL + "user/" + user_id)
         response.raise_for_status()
-        users = response.json()
-        return jsonify(users)
+        user = response.json()
+        return render_template("profil.html", user=user)
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
     
@@ -180,10 +179,17 @@ def delete_user(user_id) :
     else:
         return jsonify({'message': 'Failed to add user'}), response.status_code
     
-@app.route('/exercises', methods=['GET'])
+@app.route('/myexercises', methods=['GET'])
 def getExercisesFromSession() :
+    jwt_token = request.cookies.get('jwt_token')
+    
+    if not jwt_token:
+        return redirect('/login')
+    
+    user_info = verify_jwt(jwt_token)
     try:
-        response = requests.get(API_URL + "exercise/2")
+        userSession = requests.get(API_URL + "session/user/" + user_info.get("user_id"))
+        response = requests.get(API_URL + "exercise/" + userSession)
         response.raise_for_status()
         exercises = response.json()
         return render_template('exos_realises.html', exercises=exercises)
