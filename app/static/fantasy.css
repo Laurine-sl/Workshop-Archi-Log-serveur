@@ -23,11 +23,11 @@ header p {
   margin: 1% 0;
 }
 
-div > h3{
- text-align: center;
+div > h3 {
+  text-align: center;
 }
 
-.last{
+.last {
   margin-bottom: 30%;
 }
 
@@ -77,8 +77,8 @@ nav a:hover {
 
 .user {
   display: flex;
+  padding: 10px;
   flex-direction: row;
-  padding-left: 10px;
   justify-content: space-between;
   align-items: center;
 }

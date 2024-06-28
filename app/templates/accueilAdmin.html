@@ -30,7 +30,6 @@
       <p>{{user.age}} ans</p>
       <button class="edit-button" data-user-id="{{user.user_id}}">Modify</button>
       <button class="delete-button" data-user-id="{{user.user_id}}">Delete</button>
-      <a href="/user/{{user.user_id}}">View Session</a>
     </div>
 
     {% else %}
@@ -40,9 +39,8 @@
       <p>{{ user.firstname }}</p>
       <p>{{ user.mail }}</p>
       <p>{{ user.age }} ans</p>
-      <button class="edit-button" data-user-id="{{user.user_id}}">Modify</button>
-      <button class="delete-button" data-user-id="{{user.user_id}}">Delete</button>
-      <a href="/user/{{user.user_id}}">View Session</a>
+      <button class="edit-button" data-id="{{user.user_id}}">Modify</button>
+      <button class="delete-button" data-id="{{user.user_id}}">Delete</button>
     </div>
 
     {% endif %} {% endfor %}
@@ -106,43 +104,42 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <script>
-
-    document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('.edit-button').forEach(button => {
-        button.addEventListener('click', function() {
-          var userId = this.dataset.userId;
-          openModifyForm(userId);
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".edit-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          var id = this.dataset.id;
+          openModifyForm(id);
         });
       });
-      document.querySelectorAll('.delete-button').forEach(button =>{
-        button.addEventListener('click', function() {
-          var userId = this.dataset.userId;
-          window.location.href = `user/delete/${userId}`;
-        })
+      document.querySelectorAll(".delete-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          let id = this.dataset.id;
+          window.location.href = `user/delete/${id}`;
+        });
       });
     });
-
-    function openModifyForm(userId) {
-      container_form = document.querySelector('.container-form');
-      form = document.querySelector('.form-action');
-      submit_button = document.querySelector('#submit-button');
-      form.action = "user/update/" + userId;
-      submit_button.setAttribute('value', 'Update');
-      container_form.style.visibility = 'visible';
+    
+    function openModifyForm(id) {
+      container_form = document.querySelector(".container-form");
+      form = document.querySelector(".form-action");
+      submit_button = document.querySelector("#submit-button");
+      form.action = "user/update/" + id;
+      submit_button.setAttribute("value", "Update");
+      container_form.style.visibility = "visible";
     }
-
-    function openAddForm(){
-      form = document.querySelector('.form-action');
-      submit_button = document.querySelector('#submit-button');
+    
+    function openAddForm() {
+      form = document.querySelector(".form-action");
+      submit_button = document.querySelector("#submit-button");
       form.action = "user/add";
-      submit_button.setAttribute('value', 'Add');
-      document.querySelector('.container-form').style.visibility = 'visible';
+      submit_button.setAttribute("value", "Add");
+      document.querySelector(".container-form").style.visibility = "visible";
     }
-
+    
     function closeForm() {
-      document.querySelector('.container-form').style.visibility = 'hidden';
+      document.querySelector(".container-form").style.visibility = "hidden";
     }
-
+    
   </script>
 </body>
 

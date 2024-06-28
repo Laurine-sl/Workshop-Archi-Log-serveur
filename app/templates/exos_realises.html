@@ -22,7 +22,7 @@
       <label for="title-select">Titre : </label>
       <select name="title" id="title">
         {% for exercise in allExercises %}
-          <option value="name_exercice1">{{exercise.title}}</option>
+          <option>{{exercise.title}}</option>
         {%endfor%}
       </select>
       <br /><br />
@@ -37,10 +37,34 @@
     {% for exercise in exercises  %}
       <ul>
         <li>Nom de l'exercice : {{exercise.title}} </li>
-        <li>Date : {{exercise.date}} </li>
+        <li>Date : {{exercise.date[:10]}} </li>
         <li>Tempo : {{exercise.tempo}} </li>
+        <button class="edit-button" data-id="{{exercise.exercice_id}}">Modifier</button>
+        <button class="delete-button" data-id="{{exercise.exercice_id}}">Supprimer</button>
       </ul>
     {% endfor %}
+
+
+    <div class="container-form">
+      <div class="form">
+        <span class="close" onclick="closeForm()">&times;</span>
+        <h2>Modifier un exercice</h2> <br/>
+        <form method="POST" class="form-action">
+          <label for="title-select">Titre : </label>
+          <select name="title" id="title">
+            {% for exercise in allExercises %}
+              <option>{{exercise.title}}</option>
+            {%endfor%}
+          </select>
+          <br /><br />
+
+          <label>Tempo :</label>
+          <input type="tempo" id="tempo" name="tempo"/>
+          
+          <input type="submit" id="submit-button" value="MODIFIER" />
+        </form>
+      </div>
+    </div>
 
     <footer class="footer">
       <div class="waves">
@@ -72,5 +96,35 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".edit-button").forEach((button) => {
+          button.addEventListener("click", function () {
+            let id = this.dataset.id;
+            openModifyForm(id);
+          });
+        });
+        document.querySelectorAll(".delete-button").forEach((button) => {
+          button.addEventListener("click", function () {
+            let id = this.dataset.id;
+            window.location.href = `myexercises/delete/${id}`;
+          });
+        });
+      });
+      
+      function openModifyForm(id) {
+        container_form = document.querySelector(".container-form");
+        form = document.querySelector(".form-action");
+        submit_button = document.querySelector("#submit-button");
+        form.action = "myexercises/update/" + id;
+        submit_button.setAttribute("value", "Update");
+        container_form.style.visibility = "visible";
+      }
+      
+      function closeForm() {
+        document.querySelector(".container-form").style.visibility = "hidden";
+      }
+      
+    </script>
   </body>
 </html>

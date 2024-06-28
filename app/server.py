@@ -174,10 +174,11 @@ def update_user(user_id) :
 @app.route('/user/delete/<user_id>', methods=['GET'])
 def delete_user(user_id) :
     response = requests.delete(API_URL + "user/" + user_id)
+    
     if response.status_code == 201 or response.status_code == 200:
         return redirect("/")
     else:
-        return jsonify({'message': 'Failed to add user'}), response.status_code
+        return jsonify({'message': 'Failed to delete user'}), response.status_code
     
 @app.route('/myexercises', methods=['GET'])
 def getExercisesFromSession() :
@@ -198,9 +199,6 @@ def getExercisesFromSession() :
     allExercises = getAllExercises()
     return render_template("exos_realises.html", allExercises=allExercises, exercises=exercises)
 
-@app.route('/exercises/<session_id>/<exercise_id>', methods=['GET'])
-def getExerciseFromSessionByIds(session_id, exercise_id) :
-    return "Exercise id Session Detail"
 
 @app.route('/exercises', methods=['GET'])
 def getExercises() :
@@ -218,12 +216,11 @@ def addExercise() :
 
     title = request.form.get("title")
     tempo = request.form.get("tempo")
-    print(title)
     
-    exercise_id = getExerciseIdByTitle(title)
+    exercise_id = getExerciseIdByTitle(title).get("exercice_id")
     
     data={
-        'exercice_id' : exercise_id,
+        'exercise_id' : exercise_id,
         'tempo' : tempo
     }
     
@@ -231,11 +228,54 @@ def addExercise() :
         return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
     
     userSession = getSessionId(user_info)
-    response = requests.post(API_URL + "session/exercise" + userSession.get("session_id"), json=data)
+    response = requests.post(API_URL + "session/exercise/" + str(userSession.get("session_id")), json=data)
     if response.status_code == 201 or response.status_code == 200:
         return redirect("/myexercises")
     else:
-        return jsonify({'message': 'Failed to add user'}), response.status_code
+        print("You already have this exercise : modify your tempo instead"), response.status_code
+    
+@app.route('/myexercises/update/<exercise_id>', methods=['POST'])
+def update_exercise(exercise_id) :
+    
+    jwt_token = request.cookies.get('jwt_token')
+    
+    if not jwt_token:
+        return redirect("/")
+
+    user_info = verify_jwt(jwt_token)
+    title = request.form.get("title")
+    tempo = request.form.get("tempo")
+    
+    exercise_id = getExerciseIdByTitle(title).get("exercice_id")
+    
+    data={
+        'tempo' : tempo
+    }
+    
+    if not title or not tempo:
+        return jsonify({'message': "Tous les champs n'ont pas été remplis"}), 400
+    
+    userSession = getSessionId(user_info)
+    response = requests.put(API_URL + "session/exercise/" + str(userSession.get("session_id")) + "/" + str(exercise_id), json=data)
+    if response.status_code == 201 or response.status_code == 200:
+        return redirect("/myexercises")
+    else:
+        return jsonify({'message': 'Failed to update exercise'}), response.status_code
+    
+@app.route('/myexercises/delete/<exercise_id>', methods=['GET'])
+def delete_exercise(exercise_id) :
+    jwt_token = request.cookies.get('jwt_token')
+    
+    if not jwt_token:
+        return redirect("/")
+    user_info = verify_jwt(jwt_token)
+    userSession = getSessionId(user_info)
+    response = requests.delete(API_URL + "session/exercise/" + str(userSession.get("session_id")) + "/" + exercise_id)
+    print(API_URL + "session/exercise/" + str(userSession.get("session_id")) + "/" + exercise_id)
+    if response.status_code == 201 or response.status_code == 200:
+        return redirect("/myexercises")
+    else:
+        return jsonify({'message': 'Failed to delete exercise'}), response.status_code
         
 def getAllExercises():
     response = requests.get(API_URL + "exercise")
